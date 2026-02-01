@@ -61,6 +61,9 @@ RUN apt-get update \
     curl \
   && rm -rf /var/lib/apt/lists/*
 
+# uv (Python package manager) for runtime usage
+RUN python3 -m pip install --no-cache-dir uv
+
 WORKDIR /app
 
 # Wrapper deps
