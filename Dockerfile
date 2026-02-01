@@ -12,6 +12,12 @@ RUN apt-get update \
     g++ \
   && rm -rf /var/lib/apt/lists/*
 
+# pnpm
+RUN corepack enable
+
+# uv (Python package manager)
+RUN python3 -m pip install --no-cache-dir uv
+
 # Install Bun (openclaw build uses it)
 RUN curl -fsSL https://bun.sh/install | bash
 ENV PATH="/root/.bun/bin:${PATH}"
@@ -45,6 +51,14 @@ ENV NODE_ENV=production
 RUN apt-get update \
   && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     ca-certificates \
+    git \
+    gh \
+    jq \
+    ripgrep \
+    ffmpeg \
+    python3 \
+    python3-pip \
+    curl \
   && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
