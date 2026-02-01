@@ -17,7 +17,10 @@ RUN apt-get update \
 RUN corepack enable
 
 # uv (Python package manager)
-RUN python3 -m pip install --no-cache-dir uv
+RUN apt-get update \
+  && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+    python3-uv \
+  && rm -rf /var/lib/apt/lists/*
 
 # Install Bun (openclaw build uses it)
 RUN curl -fsSL https://bun.sh/install | bash
@@ -63,7 +66,10 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/*
 
 # uv (Python package manager) for runtime usage
-RUN python3 -m pip install --no-cache-dir uv
+RUN apt-get update \
+  && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+    python3-uv \
+  && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
