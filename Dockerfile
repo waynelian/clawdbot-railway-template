@@ -8,6 +8,7 @@ RUN apt-get update \
     ca-certificates \
     curl \
     python3 \
+    python3-pip \
     make \
     g++ \
   && rm -rf /var/lib/apt/lists/*
